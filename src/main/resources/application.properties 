@@ -1,0 +1,31 @@
+spring.h2.console.enabled=true
+#Turn Statistics on
+spring.jpa.properties.hibernate.generate_statistics=true
+logging.level.org.hibernate.stat=debug
+# Show all queries
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+logging.level.org.hibernate.type=trace
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.data.jpa.repositories.bootstrap-mode=default
+spring.jpa.defer-datasource-initialization=true
+spring.sql.init.mode=always
+
+spring.h2.console.enabled=true
+spring.h2.console.path=/console/
+
+
+spring.cache.type=caffeine
+spring.cache.cache-names=rate-limit-buckets
+spring.cache.caffeine.spec=maximumSize=100000,expireAfterAccess=3600s
+
+bucket4j.enabled=true
+bucket4j.filters[0].cache-name=rate-limit-buckets
+bucket4j.filters[0].filter-method=servlet
+bucket4j.filters[0].url=.*
+bucket4j.filters[0].strategy=first
+bucket4j.filters[0].rate-limits[0].bandwidths[0].capacity=1
+bucket4j.filters[0].rate-limits[0].bandwidths[0].time=1
+bucket4j.filters[0].rate-limits[0].bandwidths[0].unit=minutes
+bucket4j.filters[0].rate-limits[0].bandwidths[0].fixed-refill-interval=1
+bucket4j.filters[0].rate-limits[0].bandwidths[0].fixed-refill-interval-unit=minutes
